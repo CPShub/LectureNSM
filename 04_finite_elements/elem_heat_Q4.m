@@ -1,7 +1,4 @@
-function [Ke, be] = elem_heat_Q4(Fe,kappa)
-
-Xe = [0 0 1 1;
-      0 1 1 0];
+function [Ke, be] = elem_heat_Q4(Xe,Fe,kappa)
 
 qp = [-1  1 -1  1;
       -1 -1  1  1] / sqrt(3); % gauss points

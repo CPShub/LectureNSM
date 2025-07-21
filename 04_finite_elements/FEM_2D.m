@@ -24,7 +24,7 @@ k   = 1;               % [W/(m K)], thermal conductivity
 
 T0 = 300;              % [K], Temperature at the Dirichlet boundaries
 
-Q0 = 1e4;
+Q0 = 1000;
 
 % --- GENERATE FE MESH ---
 [nodes, edof] = mesh_rect_Q4(Lx, Ly, nx, ny); % edof = "element degrees of freedom"
@@ -43,6 +43,8 @@ F = zeros(nnodes, 1);           % initialize load vector
 % assembly loop
 for e = 1:nelem
 
+    Xe = nodes(:,edof(e,:));
+
     if ismember(e, Q0_elems)
         Fe = [1 1 1 1]*Q0*(Lx/nx)*(Ly/ny)/4;
     else
@@ -50,7 +52,7 @@ for e = 1:nelem
     end
 
     % element stiffness matrix
-    [ke, fe] = elem_heat_Q4(Fe,k);
+    [ke, fe] = elem_heat_Q4(Xe,Fe,k);
 
     % assembly
     K(edof(e,:), edof(e,:)) = K(edof(e,:), edof(e,:)) + ke;

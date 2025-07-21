@@ -1,9 +1,9 @@
-%% Code example 3: Finite Volume Method
+%% Code example 4: Finite Elements Method
 
 % Lecture 'Numerical Simulation Methods'
-% Felix Rutsch, June 2025
+% Felix Rutsch, July 2025
 
-% solve stationary advection-diffusion equation with FVM
+% solve stationary diffusion equation with FEM
 
 % y
 % ^
@@ -25,7 +25,7 @@ cp  = 1000;              % [J/(kg K)], heat capacity, e.g. 4.18e3
 k   = 1;               % [W/(m K)], thermal conductivity, e.g. 0.6 
 %alpha = k/(rho*cp);   % [m^2/s], thermal diffusivity
 
-vx = 0.1; vy = 0.1;    % [m/s]
+vx = 0; vy = 0;    % [m/s]
 
 method = 'UDS'; % for the convective term: UDS or CDS
 
