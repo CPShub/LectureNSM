@@ -1,6 +1,8 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.animation as animation
+from IPython.display import HTML
 
 def plot_motion(t:np.array, x_lin:np.array, x_nlin:np.array, title:str) -> None:
     fig, (ax1, ax2) = plt.subplots(ncols=2, figsize=[14, 2.5])
@@ -67,3 +69,43 @@ def plot_convergence(timesteps:list, error_se:list, error_tr:list) -> None:
     ax2.spines['top'].set_visible(False)
     ax2.spines['right'].set_visible(False)
     ax2.grid(visible=True, which='both', linestyle='--', linewidth=0.5)
+
+def make_animation(t:np.array, vals_lin:np.array, vals_nlin:np.array, bounds:float, delta_t:float, title:str):
+    fig, (ax, ax2) = plt.subplots(ncols=2, figsize=[10, 4])
+    fig.suptitle(title)
+    ax.autoscale(False)
+    ax.set_xlim((-bounds, bounds))
+    ax.set_ylim((-bounds, bounds))
+    ax.set_aspect('equal')
+    ax.set_title("Linearisiert")
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    line, = ax.plot([], [], 'o-', lw=2, color='#008374')
+
+    ax2.autoscale(False)
+    ax2.set_xlim((-bounds, bounds))
+    ax2.set_ylim((-bounds, bounds))
+    ax2.set_aspect('equal')
+    ax2.set_title("Nicht Linearisiert")
+    ax2.spines['top'].set_visible(False)
+    ax2.spines['right'].set_visible(False)
+    line2, = ax2.plot([], [], 'o-', lw=2, color='#936496')
+    time_template = '%.1f s'
+    time_text = ax2.text(0.05, 0.9, '', transform=ax2.transAxes)
+
+    def animate(i):
+        x_lin = np.sin(vals_lin[i, 0])
+        y_lin = -np.cos(vals_lin[i, 0])
+        x_nlin = np.sin(vals_nlin[i, 0])
+        y_nlin = -np.cos(vals_nlin[i, 0])
+        line.set_data([0, x_lin], [0, y_lin])
+        time_text.set_text(time_template % (i*delta_t))
+        line2.set_data([0, x_nlin], [0, y_nlin])
+        return line, line2, time_text
+
+    ani = animation.FuncAnimation(
+        fig, animate, frames=len(t), interval=delta_t*1000, blit=True
+    )
+    plt.close()
+
+    return HTML(ani.to_jshtml(fps=20))
