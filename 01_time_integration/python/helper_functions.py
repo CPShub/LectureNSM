@@ -53,7 +53,7 @@ def plot_convergence(timesteps:list, error_se:list, error_tr:list) -> None:
 
     ax.loglog(timesteps, error_se[:, 1], label='Symplektisches Euler-Verfahren', color="#008374", marker='o', linestyle='-')
     ax.loglog(timesteps, error_tr[:, 1], label='Trapezregel', color="#344b47", marker='o', linestyle='-')
-    ax.set_xlabel("Zeitschrittgröße Δt in s")
+    ax.set_xlabel("Zeitschrittweite Δt in s")
     ax.set_ylabel("Abweichung vom analytischen Wert in rad")
     ax.set_title("Erster Zeitschritt")
     ax.spines['top'].set_visible(False)
@@ -63,7 +63,7 @@ def plot_convergence(timesteps:list, error_se:list, error_tr:list) -> None:
 
     ax2.loglog(timesteps, error_se[:, 2], label='Symplektisches Euler-Verfahren', color="#008374", marker='o', linestyle='-')
     ax2.loglog(timesteps, error_tr[:, 2], label='Trapezregel', color="#344b47", marker='o', linestyle='-')
-    ax2.set_xlabel("Zeitschrittgröße Δt in s")
+    ax2.set_xlabel("Zeitschrittweite Δt in s")
     ax2.set_ylabel("Abweichung vom analytischen Wert in rad")
     ax2.set_title("Zweiter Zeitschritt")
     ax2.spines['top'].set_visible(False)
