@@ -19,8 +19,8 @@ cp  = 4.18e3;          % [J/(kg K)], heat capacity
 k   = 0.6;             % [W/(m K)], thermal conductivity
 alpha = k/(rho*cp);    % [m^2/s], thermal diffusivity
 
-%v1 = 1.0; v2 = 0.5;   % [m/s]
-v1 = 0; v2 = 0;
+v1 = 1.0; v2 = 0.5;   % [m/s]
+% v1 = 0; v2 = 0;
 
 %--- SPATIAL GRID ---
 x = linspace(0, Lx, Nx);
@@ -40,7 +40,7 @@ Fv = reshape(f, Nx*Ny, 1);
 
 %--- ASSEMBLE A and b ---
 N = Nx*Ny;
-A = sparse(N,N);
+A = zeros(N,N);
 b = zeros(N,1);
 idx = @(i,j) (j-1)*Nx + i;
 
