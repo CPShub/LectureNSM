@@ -47,11 +47,10 @@ def plot_convergence(step_sizes:np.array, err_a:np.array, err_b:np.array, label_
 
 def plot_heat(heat_source:np.array, X:np.array, Y:np.array, Phi:np.array) -> None:
     fig, (ax1, ax2) = plt.subplots(ncols=2, figsize=[11, 4])
-    fig = plt.figure(figsize =(4.5, 4.5))
 
     heat = ax1.pcolormesh(X, Y, heat_source, cmap = plt.get_cmap('copper'), shading='nearest')
     ax1.axis('equal')
-    ax1.set_title("Spezifischer Wärmestrom in W/kg")
+    ax1.set_title("Spezifischer Wärmestrom in W/m²")
     cbar = fig.colorbar(heat, ax=ax1)
     ax1.set_xlabel("x in m")
     ax1.set_ylabel("y in m")
