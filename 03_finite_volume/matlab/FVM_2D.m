@@ -21,13 +21,13 @@ hx = Lx/Nx;            % [m]
 hy = Ly/Ny;            % [m]
 
 rho = 1000;              % [kg/m^3], mass density, e.g. 1.0e3 for water
-cp  = 1000;              % [J/(kg K)], heat capacity, e.g. 4.18e3
-k   = 1;               % [W/(m K)], thermal conductivity, e.g. 0.6 
+cp  = 4.18e3;              % [J/(kg K)], heat capacity, e.g. 4.18e3
+k   = 0.6;               % [W/(m K)], thermal conductivity, e.g. 0.6 
 %alpha = k/(rho*cp);   % [m^2/s], thermal diffusivity
 
 vx = 0; vy = 0;    % [m/s]
 
-method = 'UDS'; % for the convective term: UDS or CDS
+method = 'CDS'; % for the convective term: UDS or CDS
 
 %--- SPATIAL GRID ---
 x = hx/2:hx:Lx-hx/2;  % cell‐center x
@@ -127,12 +127,12 @@ phi_W = 300;
 fW = 0;
 
 % east
-BC_E = 'D';
+BC_E = 'N';
 phi_E = 300;
 fE = 0;
 
 % south
-BC_S = 'D';
+BC_S = 'N';
 phi_S = 300;
 fS = 0; 
 
