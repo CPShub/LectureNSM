@@ -48,27 +48,17 @@ def plot_energy(t:np.array, E_pot:list, E_kin:list, E_total:list, E_pot_nonlinea
     ax8.legend()
 
 def plot_convergence(timesteps:list, error_se:list, error_tr:list) -> None:
-    fig, (ax, ax2) = plt.subplots(ncols=2, figsize=[10, 4.5])
+    fig, ax = plt.subplots(figsize=[7, 5])
     fig.suptitle("Konvergenzanalyse der Zeitintegrationsverfahren")
 
-    ax.loglog(timesteps, error_se[:, 1], label='Symplektisches Euler-Verfahren', color="#435384", marker='o', linestyle='-')
-    ax.loglog(timesteps, error_tr[:, 1], label='Trapezregel', color="#C24C4C", marker='o', linestyle='-')
+    ax.loglog(timesteps, error_se, label='Symplektisches Euler-Verfahren', color="#435384", marker='o', linestyle='-')
+    ax.loglog(timesteps, error_tr, label='Trapezregel', color="#C24C4C", marker='o', linestyle='-')
     ax.set_xlabel("Zeitschrittweite Δt in s")
-    ax.set_ylabel("Abweichung vom analytischen Wert in rad")
-    ax.set_title("Erster Zeitschritt")
+    ax.set_ylabel("E = |Phi - Phi_ref| [rad]")
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.grid(visible=True, which='both', linestyle='--', linewidth=0.5)
     ax.legend(loc = "upper left")
-
-    ax2.loglog(timesteps, error_se[:, 2], label='Symplektisches Euler-Verfahren', color="#435384", marker='o', linestyle='-')
-    ax2.loglog(timesteps, error_tr[:, 2], label='Trapezregel', color="#C24C4C", marker='o', linestyle='-')
-    ax2.set_xlabel("Zeitschrittweite Δt in s")
-    ax2.set_ylabel("Abweichung vom analytischen Wert in rad")
-    ax2.set_title("Zweiter Zeitschritt")
-    ax2.spines['top'].set_visible(False)
-    ax2.spines['right'].set_visible(False)
-    ax2.grid(visible=True, which='both', linestyle='--', linewidth=0.5)
 
 def make_animation(t:np.array, vals_lin:np.array, vals_nlin:np.array, bounds:float, delta_t:float, title:str):
     fig, (ax, ax2) = plt.subplots(ncols=2, figsize=[10, 4])
