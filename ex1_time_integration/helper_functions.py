@@ -4,10 +4,11 @@ import numpy as np
 import matplotlib.animation as animation
 from IPython.display import HTML
 
-def plot_motion(t:np.array, x_lin:np.array, x_nlin:np.array, title:str) -> None:
+def plot_motion(t:np.array, x_ana:np.array, x_lin:np.array, x_nlin:np.array, title:str) -> None:
     fig, (ax1, ax2) = plt.subplots(ncols=2, figsize=[14, 2.5])
     fig.suptitle(title)
 
+    ax1.plot(t, x_ana[:, 0], label="Analytisch", color="#435384", linestyle="--")
     ax1.plot(t, x_lin[:, 0], label="Linearisiert", color="#435384", linestyle="-")
     ax1.plot(t, x_nlin[:, 0], label="Nicht Linearisiert", color="#C24C4C", linestyle="-")
     ax1.set_ylabel("Φ in rad")
@@ -15,6 +16,7 @@ def plot_motion(t:np.array, x_lin:np.array, x_nlin:np.array, title:str) -> None:
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
 
+    ax2.plot(t, x_ana[:, 1], label="Analytisch", color="#435384", linestyle="--")
     ax2.plot(t, x_lin[:, 1], label="Linearisiert", color="#435384", linestyle="-")
     ax2.plot(t, x_nlin[:, 1], label="Nicht Linearisiert", color="#C24C4C", linestyle="-")
     ax2.set_ylabel("v in rad/s")
