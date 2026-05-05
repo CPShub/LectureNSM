@@ -9,5 +9,6 @@ dependencies = [
     "ipython>=9.9.0",
     "matplotlib>=3.10.8",
     "numpy>=2.4.1",
+    "pandas>=3.0.2",
     "scipy>=1.17.0",
 ]
