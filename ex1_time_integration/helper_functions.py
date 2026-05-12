@@ -49,11 +49,12 @@ def plot_energy(t:np.array, E_pot:list, E_kin:list, E_total:list, E_pot_nonlinea
     ax8.spines['right'].set_visible(False)
     ax8.legend()
 
-def plot_convergence(timesteps:list, error_se:list, error_tr:list) -> None:
+def plot_convergence(timesteps:list, error_se:list, error_mp:list, error_tr:list) -> None:
     fig, ax = plt.subplots(figsize=[7, 5])
     fig.suptitle("Konvergenzanalyse der Zeitintegrationsverfahren")
 
     ax.loglog(timesteps, error_se, label='Symplektisches Euler-Verfahren', color="#435384", marker='o', linestyle='-')
+    ax.loglog(timesteps, error_mp, label='Explizite Mittelpunktsregel', color="#F6A315", marker='o', linestyle='-')
     ax.loglog(timesteps, error_tr, label='Trapezregel', color="#C24C4C", marker='o', linestyle='-')
     ax.set_xlabel("Zeitschrittweite Δt in s")
     ax.set_ylabel("E = |Phi - Phi_ref| [rad]")
