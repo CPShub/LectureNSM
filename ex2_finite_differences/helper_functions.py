@@ -36,8 +36,8 @@ def plot_convergence(step_sizes:np.array, err_a:np.array, err_b:np.array, label_
     fig, (ax) = plt.subplots(ncols=1, figsize=[5, 4.5])
     fig.suptitle("Konvergenzanalyse der FD-Methoden")
 
-    ax.loglog(step_sizes, err_a[:, 0], label=label_a, color="#435384", marker='o', linestyle='-')
-    ax.loglog(step_sizes, err_b[:, 0], label=label_b, color="#C24C4C", marker='d', linestyle='-')
+    ax.semilogy(step_sizes, err_a, label=label_a, color="#435384", marker='o', linestyle='-')
+    ax.semilogy(step_sizes, err_b, label=label_b, color="#C24C4C", marker='d', linestyle='-')
     ax.set_xlabel("Zeitschrittweite")
     ax.set_ylabel("Abweichung vom analytischen Wert")
     ax.spines['top'].set_visible(False)
